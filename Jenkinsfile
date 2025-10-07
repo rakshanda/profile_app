@@ -5,7 +5,7 @@ pipeline {
         stage('Checkout Code') {
             steps {
                 echo "Pulling latest code from GitHub..."
-                git branch: 'master', url: 'https://github.com/rakshanda/profile_app.git'
+                git branch: 'master', url: 'https://github.com/rakshandaphate/profile_app.git'
             }
         }
 
@@ -18,15 +18,19 @@ pipeline {
             }
         }
 
-          stage('Run Docker Container') {
+        stage('Run Docker Container') {
             steps {
                 echo "Running Docker container..."
                 script {
-                    // Stop and remove if already running
-                    sh 'docker ps -a -q --filter "name=profile-app-container" | grep -q . && docker rm -f profile-app-container || true'
+                    // Stop and remove existing container if it exists
+                    sh '''
+                    if [ "$(docker ps -aq -f name=profile-app-container)" ]; then
+                        docker rm -f profile-app-container
+                    fi
+                    '''
 
                     // Run new container
-                    sh 'docker run -d --name ${CONTAINER_NAME} -p 5000:5000 profile-app:latest'
+                    sh 'docker run -d --name profile-app-container -p 5010:5010 profile-app:latest'
                 }
             }
         }
@@ -34,12 +38,12 @@ pipeline {
 
     post {
         success {
-            echo "✅ Deployment completed successfully!"
+            echo " Deployment completed successfully!"
             sh 'docker images'
             sh 'docker ps'
         }
         failure {
-            echo "❌ Deployment failed. Please check logs."
+            echo " Deployment failed. Please check logs."
         }
     }
 }
