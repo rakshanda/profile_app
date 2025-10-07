@@ -12,8 +12,8 @@ app.secret_key = os.urandom(24)
 db = mysql.connector.connect(
     host="172.31.6.163",
     user="admin",
-    password="Strong123#Pass",
-    database="devops-app-db"
+    password="Strong123#Pass"
+    #database="devops-app-db"
 )
 cursor = db.cursor()
 
