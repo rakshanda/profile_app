@@ -5,7 +5,7 @@ pipeline {
         stage('Checkout Code') {
             steps {
                 echo "Pulling latest code from GitHub..."
-                git branch: 'master', url: 'https://github.com/rakshandaphate/profile_app.git'
+                git branch: 'master', url: 'https://github.com/rakshanda/profile_app.git'
             }
         }
 
