@@ -32,7 +32,7 @@ pipeline {
                     sh 'docker ps -a -q --filter "name=${CONTAINER_NAME}" | grep -q . && docker rm -f ${CONTAINER_NAME} || true'
 
                     // Run new container
-                    sh 'docker run -d --name ${CONTAINER_NAME} -p ${PORT}:5000 ${IMAGE_NAME}:latest'
+                    sh 'docker run -d --name ${CONTAINER_NAME} -p 5000:5000 ${IMAGE_NAME}:latest'
                 }
             }
         }
