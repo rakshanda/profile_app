@@ -10,9 +10,9 @@ app.secret_key = os.urandom(24)
 # DATABASE CONNECTION
 # -----------------------------
 db = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    password="root"
+    host="devops-app-db.cfy4gsysms8a.eu-west-1.rds.amazonaws.com",
+    user="admin",
+    password="Strong123#Pass"
 )
 cursor = db.cursor()
 
@@ -34,9 +34,9 @@ cursor.close()
 
 # Reconnect with dictionary cursor
 db = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    password="root",
+    host="devops-app-db.cfy4gsysms8a.eu-west-1.rds.amazonaws.com",
+    user="admin",
+    password="Strong123#Pass",
     database="codenera"
 )
 cursor = db.cursor(dictionary=True)
