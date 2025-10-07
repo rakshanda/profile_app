@@ -12,7 +12,8 @@ app.secret_key = os.urandom(24)
 db = mysql.connector.connect(
     host="devops-app-db.cfy4gsysms8a.eu-west-1.rds.amazonaws.com",
     user="admin",
-    password="Strong123#Pass"
+    password="Strong123#Pass",
+    database="devops-app-db"
 )
 cursor = db.cursor()
 
